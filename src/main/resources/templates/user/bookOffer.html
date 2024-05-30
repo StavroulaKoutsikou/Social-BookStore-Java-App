@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+   
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+    <title>Create Your Book Offer</title>
+
+    
+    <style>
+        body {
+            background-color: #ffe5b4; 
+            color: darkgreen; 
+        }
+        
+      
+        .btn-dark-grey {
+            background-color: #808080; 
+            color: #ffffff; 
+            border: none; 
+        }
+        
+        .btn-dark-grey:hover {
+            background-color: #595959;
+        }
+        .text-green {
+            color: #2ecc71;
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-dark fixed-top">
+        <div class="container-fluid">
+              <a class="navbar-brand" href="#">
+    <span class="text-green">Book Store</span>
+        </a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active text-white" aria-current="page" href="/user/dashboard">Home</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a th:href="@{/user/bookOffer}" class="nav-link active text-white" aria-current="page">Book Offer</a>
+                </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container text-center my-5">
+	    <h1>Add a Book</h1>
+	    <form th:action="@{/user/bookOffer}" method="post" th:object="${bookform}">
+	
+	        <div class="form-group">
+	            <label for="title">Title:</label>
+	            <input type="text" class="form-control" id="title" th:field="*{title}" required>
+	        </div>
+	        <div class="form-group">
+	            <label for="authors">Author(s) (Separate by commas):</label>
+	            <input type="text" class="form-control" id="authors" th:field="*{authors}" required>
+	        </div>
+	        <div class="form-group">
+	            <label for="category">Category:</label>
+	            <select class="form-control" id="category" th:field="*{category}" required>
+	                <option value="Art">Art</option>
+	                <option value="Comic">Comic</option>
+	                <option value="Fantasy">Fantasy</option>
+	                <option value="Fiction">Fiction</option>
+	                <option value="Biographies">Biography</option>
+	                <option value="History">History</option>
+	                <option value="Science">Science</option>
+	                <option value="Literature">Literature</option>
+	                <option value="Adventure">Adventure</option>
+	                <option value="Crime">Crime</option>
+	                <option value="Other">Other</option>
+	            </select>
+        </div>
+        <div class="form-group">
+            <label for="summary">Summary:</label>
+            <textarea class="form-control" id="summary" th:field="*{summary}" rows="3" required></textarea>
+        </div>
+
+        
+        <button type="submit" class="btn btn-dark-grey">Add Book Offer</button>
+    </form>
+    </div>
+</body>
+
+
+</html>

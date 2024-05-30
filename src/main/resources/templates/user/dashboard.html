@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+        integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
+        crossorigin="anonymous">
+
+    <title>Start your Reading</title>
+
+    
+    <style>
+        body {
+            background-color: #f5deb3; 
+            color: darkgreen; 
+            position: relative;
+            min-height: 100vh; 
+        }
+
+        .big-space {
+            margin-bottom: 50px; 
+        }
+
+        .btn-register {
+            background-color: #808080; 
+            color: #add8e6; 
+            padding: 15px 30px; 
+            margin-right: 10px; 
+        }
+
+        .bottom-left {
+            position: fixed;
+            bottom: 20px; 
+            left: 10px;
+            display: flex; 
+            align-items: center; 
+        }
+
+        .bottom-left p {
+            margin-right: 10px;
+            margin-bottom: 0;
+        }
+
+        .bottom-left .btn {
+            margin-bottom: 0; 
+        }
+        
+       
+        hr {
+            margin-top: 60px; 
+            margin-bottom: 60px; 
+        }
+
+        
+        .bottom-right {
+            position: fixed;
+            bottom: 20px;
+            right: 10px;
+        }
+        .text-green {
+    		color: #2ecc71; 
+}
+        
+    </style>
+</head>
+
+<body>
+
+
+<nav class="navbar navbar-expand-lg navbar-light bg-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">
+            <span class="text-green">Book Store</span>
+        </a>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarBookStore" aria-controls="navbarBookStore" aria-expanded="false"
+                aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarBookStore">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link active text-white" aria-current="page" href="/user/dashboard">Home</a>
+                </li>
+
+                <li class="nav-item">
+                    <a th:href="@{/user/MyProfile}" class="nav-link active text-white">My Profile</a>
+                </li>
+
+                <li class="nav-item">
+                    <a th:href="@{/user/MyBookOffer}" class="nav-link active text-white">My Book Offers</a>
+                </li>
+                
+                <li class="nav-item">
+                    <a th:href="@{/user/notifications}" class="nav-link active text-white">Notifications</a>
+                </li>
+                
+                
+            </ul>
+
+            <!-- Right-aligned links -->
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a th:href="@{/user/profile}" class="nav-link active text-white">Create Profile</a>
+                </li>
+                <li class="nav-item">
+                    <a th:href="@{/user/bookOffer}" class="nav-link active text-white">Book Offer</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+
+
+
+
+<div class="container text-center my-5">
+    <h1 class="big-space">Here you can lend and borrow every book you want!</h1>
+    <hr>
+    <div style="background-color: #e6ffe6; padding: 20px;">
+        <h4 style="letter-spacing: 2px;">Information about our page:</h4>
+        <ul style="text-align: left; margin: 20px;">
+            <li><h6>First things first,to <strong><u>create your own profile</u></strong> and let other users get to know you, hit the "<strong style="color: #2ecc71;">Create Profile</strong>" button.</h6></li>
+            <li><h6><strong><u>Check and edit your created profile</u></strong> by hitting "<strong style="color: #2ecc71;">My Profile</strong>".</h6></li>
+            <li><h6>To <strong><u>make a book donation,</u></strong> to our society, click the "<strong style="color: #2ecc71;">Book Offer</strong>" button.</h6></li>
+            <li><h6>To <strong><u>check all your book offers</u></strong>, hit "<strong style="color: #2ecc71;">My Book Offers</strong>".</h6></li>
+            <li><h6>Also, to <strong><u>check all your notifications</u></strong>, hit "<strong style="color: #2ecc71;">Notifications</strong>".</h6></li>
+        </ul>
+    </div>
+</div>
+
+
+
+<div class="container text-center my-5">
+    <a href="/user/all" class="btn btn-primary" style="background-color: #FFA500; border-color: #FFA500;">Click here to see every book we have</a>
+</div>
+
+
+
+   
+    <div class="bottom-left">
+        <p>Logged as: <span sec:authentication="name"></span></p>
+    </div>
+
+   
+    <div class="bottom-right">
+        <p sec:authorize="hasAuthority('USER')">
+            <a th:href="@{/logout}" class="btn btn-dark btn-sm">Logout</a>
+        </p>
+    </div>
+
+    <br> <br> <hr> <br> <br> 
+
+    <div sec:authorize="hasRole('ROLE_ANONYMOUS')">
+        <p>
+            <a th:href="@{/login}" class="btn btn-primary btn-sm mb-3" th:text="Login"></a>
+            <a th:href="@{/register}" class="btn btn-primary btn-sm mb-3" th:text="Register"></a>
+        </p>
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+    <title>Social Book Store</title>
+
+    
+    <style>
+        body {
+            background-color: #f5deb3; 
+            color: #00008B; 
+        }
+
+        
+        .btn-dark-grey {
+            background-color: #808080; 
+            color: #ffffff; 
+            padding: 10px 20px; 
+        }
+
+        h1, h6, h3 {
+            color: darkgreen; 
+        }
+
+        h1 {
+            margin-bottom: 20px;
+        }
+
+        h3 {
+            margin-top: 20px;
+        }
+
+        
+        .mb-3 {
+            margin-right: 10px;
+        }
+        .text-green {
+    		color: #2ecc71; 
+    	}
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-dark">
+        <div class="container-fluid">
+                          <a class="navbar-brand" href="#">
+    <span class="text-green">Book Store</span>
+		</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active text-white" aria-current="page" href="/">Home</a>
+                    </li>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container text-center my-5">
+        <h1>WELCOME TO OUR ONLINE SOCIAL BOOKSTORE</h1>
+        <h6>Where stories come to life and connections are made through the power of literature. Step into a world where every page holds the promise of adventure, knowledge, and inspiration. Whether you're a bookworm, a casual reader, or an avid explorer of new narratives, our digital shelves are brimming with tales waiting to be discovered. Join our vibrant community of book lovers from around the globe, where discussions flourish, recommendations abound, and friendships blossom over shared literary passions. From timeless classics to contemporary bestsellers, our curated collection caters to diverse tastes and interests, ensuring there's something for everyone.</h6>
+        <br> <br> <hr> <br> <br>
+        <h3>Please, login or register to your account and let's start !</h3>
+    </div>
+
+	
+    
+    <div class="text-center">
+        <div sec:authorize="hasRole('ROLE_ANONYMOUS')">
+            <p>
+                <a th:href="@{/login}" class="btn btn-dark-grey btn-sm mb-3" th:text="Login"></a>
+                <a th:href="@{/register}" class="btn btn-dark-grey btn-sm mb-3" th:text="Register"></a>
+            </p>
+        </div>
+
+        <div sec:authorize="isAuthenticated()">
+            <h4>Logged as: <span sec:authentication="name"></span></h4>
+
+
+            <br> <br> <hr> <br> <br>
+
+            <p sec:authorize="hasAuthority('USER')">
+                <a th:href="@{/user/dashboard}" class="btn btn-primary btn-sm mb-3"> User Dashboard</a>
+                <a th:href="@{/logout}" class="btn btn-danger btn-sm mb-3"> Logout</a>
+            </p>
+
+
+        </div>
+    </div>
+
+</body>
+
+</html>

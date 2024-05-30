@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+        integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
+        crossorigin="anonymous">
+
+    <title>Login</title>
+
+    
+    <style>
+        body {
+            background-color: #87ceeb; 
+            padding-top: 70px; 
+        }
+
+        .navbar {
+            background-color: #808080; 
+            color: #ffffff; 
+        }
+
+        .btn-dark-grey {
+            background-color: #808080; 
+            color: #add8e6; 
+            padding: 15px 30px; 
+            margin-right: 10px; 
+        }
+
+        form h3 {
+            margin-bottom: 20px; 
+            color: #00008B; 
+        }
+
+        
+        form input[type="text"],
+        form input[type="password"] {
+            margin-bottom: 20px; 
+        }
+
+        
+        .error-message {
+            color: #00008B; 
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-dark fixed-top">
+        <div class="container-fluid">
+            <a class="navbar-brand text-white" href="#">Book Store</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active text-white" aria-current="page" href="/">Home</a>
+                    </li>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container text-center my-5">
+        <h2>Join our community!</h2>
+    </div>
+    <div class="container">
+        <form th:action="@{/login}" method="POST">
+            <h3 style="color: #00008B;">Login Here</h3>
+            <input type="text" name="username" th:placeholder="Username" /><br />
+            <input type="password" th:placeholder="Password" name="password" /><br />
+            <button type="Submit" class="btn btn-dark-grey col-2">Login</button>
+            <a th:href="@{register}" class="btn btn-dark-grey col-2" style="margin-right: 10px;">Register</a><br />
+
+            <div th:if="${param.error}" class="error-message">
+                <p>Username or Password is invalid.</p>
+            </div>
+            <div th:utext="${successMessage}"></div>
+        </form>
+    </div>
+
+</body>
+
+</html>
+

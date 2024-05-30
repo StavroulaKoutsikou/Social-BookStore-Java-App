@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+        integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+    <title>Your Offers</title>
+
+    
+    <style>
+        body {
+            background-color: #ffe5b4; 
+            color: darkgreen; 
+            padding-top: 100px; 
+        }
+
+        
+        table tbody tr:hover {
+            background-color: #f5f5f5; 
+        }
+        .text-green {
+    		color: #2ecc71; 
+    	}
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-dark fixed-top">
+        <div class="container-fluid">
+              <a class="navbar-brand" href="#">
+    <span class="text-green">Book Store</span>
+		</a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active text-white" aria-current="page" href="/user/dashboard">Home</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav ml-auto">
+                  <li class="nav-item">
+                    <a th:href="@{/user/bookOffer}" class="nav-link active text-white" aria-current="page">Make a New Book Offer</a>
+                </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container text-center my-5">
+        <h1>There are your donations!</h1>
+
+<table class="table table-success table-striped-columns table-hover">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Title</th>
+            <th scope="col">Author(s)</th>
+            <th scope="col">Book Category</th>
+            <th scope="col">Summary</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr th:each="b, rowStat : ${books}">
+            <td th:text="${rowStat.index + 1}"></td> 
+            <td th:text="${b.title}"></td>
+            <td th:text="${b.authors}"></td>
+            <td th:text="${b.category}"></td>
+            <td th:text="${b.summary}"></td>
+            
+            				<td>
+            					<a th:href="@{/user/showRequestingUsersForBookOffer(bookId=${b.bookId})}"
+							    class="btn btn-success  btn-sm">
+								Show Requests
+								</a>
+							    
+							       
+							    <a th:href="@{deleteBookOffer(bookId=${b.bookId})}"
+							    class="btn btn-danger btn-sm text-dark" onclick="if (!(confirm('Are you sure you want to delete this book?'))) return false">
+							        Delete
+							    </a>
+							    
+							</td>
+
+            
+        </tr>
+    </tbody>
+</table>
+
+    </div>
+</body>
+
+</html>

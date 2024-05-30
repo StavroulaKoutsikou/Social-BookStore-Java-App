@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+        integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+    <title>Your Profile</title>
+
+    
+    <style>
+        body {
+            background-color: #ffe5b4; 
+            color: darkgreen; 
+            padding-top: 100px; 
+        }
+
+        
+        table tbody tr:hover {
+            background-color: #f5f5f5; 
+        }
+         .text-green {
+    		color: #2ecc71; 
+    	}
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-dark fixed-top">
+        <div class="container-fluid">
+              <a class="navbar-brand" href="#">
+			    <span class="text-green">Book Store</span>
+					</a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active text-white" aria-current="page" href="/user/dashboard">Home</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a th:href="@{/user/profile}" class="nav-link active text-white" aria-current="page">Create
+                            Profile</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container text-center my-5">
+        <h1>This is you!</h1>
+
+        <table class="table table-success table-striped-columns table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Username</th>
+                    <th scope="col">Full Name</th>
+                    <th scope="col">Address</th>
+                    <th scope="col">Age</th>
+                    <th scope="col">Phone Number</th>
+                    <th scope="col">Favorite Book Categories</th>
+                    <th scope="col">Favorite Book Authors</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="b :${profiles}">
+                    <th scope="row">You</th>
+                    <td th:text="${b.username}"></td>
+                    <td th:text="${b.fullName}"></td>
+                    <td th:text="${b.address}"></td>
+                    <td th:text="${b.age}"></td>
+                    <td th:text="${b.phoneNumber}"></td>
+					<td>
+						<span th:each="category : ${b.favoriteBookCategories}" th:text="${category} + ', '"></span>
+					</td>
+					<td th:text="${b.favoriteBookAuthors}"></td>						
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+
+</html>
